@@ -242,7 +242,7 @@ def single_plate(cylinder_segments=100, side="right"):
 
     if plate_file is not None:
         socket = import_file(plate_file)
-        socket = translate(socket, [0, 0, plate_thickness + plate_offset])
+        socket = translate(socket, [0, 0.5, plate_thickness + plate_offset])
         plate = union([plate, socket])
 
 
