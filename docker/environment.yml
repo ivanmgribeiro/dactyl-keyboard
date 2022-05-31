@@ -11,3 +11,4 @@ dependencies:
   - scipy
   - pip:
     - solidpython
+  - nptyping=1.4.4
