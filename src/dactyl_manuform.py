@@ -1726,10 +1726,11 @@ def carbonfet_thumb_connectors():
                 carbonfet_thumb_tl_place(web_post_tr()),
                 key_place(web_post_br(), 1, cornerrow),
                 key_place(web_post_bl(), 2, lastrow),
-                carbonfet_thumb_tl_place(web_post_tr()),
-                key_place(web_post_bl(), 2, lastrow),
+                carbonfet_thumb_tl_place(web_post_tr()),  # does nothing
+                key_place(web_post_br(), 2, lastrow),     # does nothing
+                ###key_place(web_post_bl(), 3, lastrow),
                 carbonfet_thumb_tl_place(web_post_br()),
-                key_place(web_post_br(), 2, lastrow),
+                #key_place(web_post_br(), 2, lastrow),
                 key_place(web_post_bl(), 3, lastrow),
                 carbonfet_thumb_tl_place(web_post_br()),
                 carbonfet_thumb_tr_place(web_post_tr()),
@@ -4038,7 +4039,7 @@ def model_side(side="right"):
         export_file(shape=walls_shape, fname=path.join(r"..", "things", r"debug_walls_shape"))
 
     s2 = union([walls_shape])
-    s2 = union([s2, *screw_insert_outers(side=side)])
+    #s2 = union([s2, *screw_insert_outers(side=side)])
 
     if controller_mount_type in ['RJ9_USB_TEENSY', 'USB_TEENSY']:
         s2 = union([s2, teensy_holder()])
@@ -4063,7 +4064,7 @@ def model_side(side="right"):
     if controller_mount_type in [None, 'None']:
         0 # do nothing, only here to expressly state inaction.
 
-    s2 = difference(s2, [union(screw_insert_holes(side=side))])
+    #s2 = difference(s2, [union(screw_insert_holes(side=side))])
     shape = union([shape, s2])
 
     if controller_mount_type in ['RJ9_USB_TEENSY', 'RJ9_USB_WALL']:
@@ -4114,7 +4115,7 @@ def model_side(side="right"):
         export_file(shape=thumb_connector_shape, fname=path.join(r"..", "things", r"debug_thumb_connector_shape"))
 
     thumb_wall_shape = thumb_walls(side=side, skeleton=skeletal)
-    thumb_wall_shape = union([thumb_wall_shape, *thumb_screw_insert_outers(side=side)])
+    #thumb_wall_shape = union([thumb_wall_shape, *thumb_screw_insert_outers(side=side)])
     thumb_connection_shape = thumb_connection(side=side, skeleton=skeletal)
 
 
@@ -4123,7 +4124,7 @@ def model_side(side="right"):
         export_file(shape=thumb_test, fname=path.join(r"..", "things", r"debug_thumb_test_{}_shape".format(side)))
 
     thumb_section = union([thumb_shape, thumb_connector_shape, thumb_wall_shape, thumb_connection_shape])
-    thumb_section = difference(thumb_section, [union(thumb_screw_insert_holes(side=side))])
+    #thumb_section = difference(thumb_section, [union(thumb_screw_insert_holes(side=side))])
 
     has_trackball = False
     if ('TRACKBALL' in thumb_style) and (side == ball_side or ball_side == 'both'):
